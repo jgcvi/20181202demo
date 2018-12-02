@@ -12,18 +12,11 @@ public class MainService {
 
     public static Customer transfer(Transfer transfer) {
         Customer fromCustomer = InMemoryDB.get(transfer.getFrom());
-        Customer toCustomer = InMemoryDB.get(transfer.getTo());
-
-        fromCustomer.lock();
-        toCustomer.lock();
 
         if(fromCustomer.getBalance() - transfer.getAmount() >= 0) {
             InMemoryDB.get(transfer.getFrom()).setBalance(-transfer.getAmount());
             InMemoryDB.get(transfer.getTo()).setBalance(transfer.getAmount());
         }
-
-        fromCustomer.unlock();
-        toCustomer.unlock();
 
         return fromCustomer;
     }

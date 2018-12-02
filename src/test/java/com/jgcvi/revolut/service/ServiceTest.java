@@ -90,12 +90,10 @@ public class ServiceTest {
 		Main.main(null);
 
 		String heartbeat = new JSONObject().put("msg", "beat").toString();
-		String yoko = new JSONObject().put("locked", false)
-				.put("id", 12).put("name", "Yoko Ono")
-				.put("balance", 100.0).toString();
-		String brian = new JSONObject().put("locked", false)
-				.put("id", 13).put("name", "Brian Epstein")
-				.put("balance", 90.0).toString();
+		String yoko = new JSONObject().put("id", 12)
+				.put("name", "Yoko Ono").put("balance", 100.0).toString();
+		String brian = new JSONObject().put("id", 13)
+				.put("name", "Brian Epstein").put("balance", 90.0).toString();
 		try {
 			assertEquals(200, client.executeMethod(get));
 			assertEquals(heartbeat, constructJSON(get.getResponseBody()));

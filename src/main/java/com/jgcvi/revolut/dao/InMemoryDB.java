@@ -10,15 +10,6 @@ public class InMemoryDB {
         return db.get(id);
     }
 
-    public static boolean lock(int id) {
-        if(db.get(id).isLocked()) {
-            return false;
-        } else {
-            db.get(id).lock();
-            return true;
-        }
-    }
-
     public static Customer createUser(String name, double balance) {
         int id = sequenceId ++;
         db.put(id, new Customer(id, name, balance));
